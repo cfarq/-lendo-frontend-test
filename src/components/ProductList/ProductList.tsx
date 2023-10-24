@@ -8,9 +8,9 @@ interface ProductListProps {
 
 export const ProductList = ({ products }: ProductListProps): JSX.Element => {
   return (
-    <div>
+    <div className="grid grid-cols-1 md:grid-cols-3 mt-12 gap-4 px-10">
       {products.map((product: ProductTypes) => {
-        return <ProductListItem product={product} />;
+        return <ProductListItem key={product.id} product={product} />;
       })}
     </div>
   );

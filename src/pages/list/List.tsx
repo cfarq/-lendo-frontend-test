@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 
 import { Page } from "../../components/Page";
+import { ProductList } from "../../components/ProductList";
 
 export const ListPage = (): JSX.Element => {
   useEffect(() => {
@@ -25,6 +26,7 @@ export const ListPage = (): JSX.Element => {
   return (
     <Page>
       <h1 className="text-3xl font-bold">List</h1>
+      <ProductList products={products} />
     </Page>
   );
 };
