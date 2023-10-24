@@ -9,12 +9,16 @@ export const ProductListItem = ({
 }: ProductListItemProps): JSX.Element => {
   return (
     <div
-      className={`w-full bg-white overflow-hidden rounded-md p-5 shadow-lg ${
-        !product.available ? "opacity-50" : ""
+      className={`w-full bg-white overflow-hidden rounded-md p-5 shadow-lg hover:bg-blue-50 ${
+        !product.available ? "opacity-60" : ""
       }`}
     >
       <div className="font-bold">{product.name}</div>
-      <div className="">{product.price} kr</div>
+      {product.available ? (
+        <div className="">{product.price} kr</div>
+      ) : (
+        <div className="text-red-600">Currently out of stock</div>
+      )}
     </div>
   );
 };
