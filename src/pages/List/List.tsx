@@ -25,7 +25,6 @@ export const ListPage = (): JSX.Element => {
 
   return (
     <Page>
-      <h1 className="text-3xl font-bold">List</h1>
       <ProductList products={products} />
     </Page>
   );

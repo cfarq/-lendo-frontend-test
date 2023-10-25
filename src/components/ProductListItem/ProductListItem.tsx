@@ -1,24 +1,33 @@
+import { Link } from "react-router-dom";
+
 import { ProductTypes } from "../../types/entities";
 
 interface ProductListItemProps {
   product: ProductTypes;
 }
 
+const handleClick = () => {};
+
 export const ProductListItem = ({
   product,
 }: ProductListItemProps): JSX.Element => {
   return (
-    <div
-      className={`w-full bg-white overflow-hidden rounded-md p-5 shadow-lg hover:bg-blue-50 ${
-        !product.available ? "opacity-60" : ""
-      }`}
+    <Link
+      to={`/product/${product.id}`}
+      onClick={() => handleClick()}
+      className="relative"
     >
-      <div className="font-bold">{product.name}</div>
-      {product.available ? (
-        <div className="">{product.price} kr</div>
-      ) : (
-        <div className="text-red-600">Currently out of stock</div>
-      )}
-    </div>
+      <div
+        className={`w-full bg-white overflow-hidden rounded-md p-5 h-full shadow-lg hover:bg-blue-50 flex flex-col justify-center ${
+          !product.available ? "opacity-60" : ""
+        }`}
+      >
+        <div className="font-bold">{product.name}</div>
+        <div>{product.price} kr</div>
+        {!product.available ? (
+          <div className="text-red-500">Out of stock</div>
+        ) : null}
+      </div>
+    </Link>
   );
 };

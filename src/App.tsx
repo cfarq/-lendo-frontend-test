@@ -3,7 +3,8 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 import { StoreLayout } from "./layouts/Store";
 
-const ListPage = lazy(() => import("./pages/list"));
+const ListPage = lazy(() => import("./pages/List"));
+const ProductPage = lazy(() => import("./pages/Product"));
 
 function App() {
   return (
@@ -11,6 +12,7 @@ function App() {
       <Routes>
         <Route path="/" element={<StoreLayout />}>
           <Route index element={<ListPage />} />
+          <Route path="product/:productId" element={<ProductPage />} />
         </Route>
       </Routes>
     </BrowserRouter>
