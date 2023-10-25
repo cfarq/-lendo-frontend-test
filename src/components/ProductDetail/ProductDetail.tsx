@@ -1,9 +1,10 @@
 import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 import { ProductTypes } from "../../types/entities";
 
 interface ProductDetailProps {
-  product: any;
+  product: ProductTypes;
 }
 
 export const ProductDetail = ({ product }: ProductDetailProps): JSX.Element => {
@@ -14,7 +15,7 @@ export const ProductDetail = ({ product }: ProductDetailProps): JSX.Element => {
   };
 
   return (
-    <div className="mt-24">
+    <div className="mt-24 px-10">
       <div>
         <button onClick={handleBackButtonClick}>Back to list view</button>
       </div>

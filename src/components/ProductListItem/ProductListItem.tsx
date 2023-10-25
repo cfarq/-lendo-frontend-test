@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
 
 import { ProductTypes } from "../../types/entities";
 
@@ -6,11 +7,16 @@ interface ProductListItemProps {
   product: ProductTypes;
 }
 
-const handleClick = () => {};
-
 export const ProductListItem = ({
   product,
 }: ProductListItemProps): JSX.Element => {
+  const dispatch = useDispatch();
+
+  const handleClick = () => {
+    dispatch({ type: "selectedItem/CLEAR_SELECTED_ITEM" });
+    dispatch({ type: "selectedItem/SELECT_ITEM", payload: product });
+  };
+
   return (
     <Link
       to={`/product/${product.id}`}
