@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { ArrowCircleLeft } from "@phosphor-icons/react";
+import Button from "@mui/material/Button";
 
 import { ProductTypes, SelectedProductTypes } from "../../types/entities";
 
@@ -13,12 +14,7 @@ export const ProductDetail = ({ product }: ProductDetailProps): JSX.Element => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const [selectedOption, setSelectedOption] = useState({
-    color: "",
-    storage: 0,
-    power: 0,
-    quantity: 0,
-  });
+  const [selectedOption, setSelectedOption] = useState({});
 
   const handleBackButtonClick = () => {
     dispatch({ type: "selectedItem/CLEAR_SELECTED_ITEM" });
@@ -51,7 +47,7 @@ export const ProductDetail = ({ product }: ProductDetailProps): JSX.Element => {
         <div>{product.price} kr</div>
       </div>
       {product.options ? (
-        <div className="flex mb-8 space-x-2">
+        <div className="flex mb-8 space-x-4">
           {product.options.map((option, index) => {
             return (
               <div
@@ -72,7 +68,9 @@ export const ProductDetail = ({ product }: ProductDetailProps): JSX.Element => {
       ) : null}
 
       <div className="mb-5">
-        <button disabled={selectedOption.quantity <= 0}>Add to cart</button>
+        <Button variant="contained" disabled={selectedOption.quantity <= 0}>
+          Add to Cart
+        </Button>
       </div>
 
       <div>
