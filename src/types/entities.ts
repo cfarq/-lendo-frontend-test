@@ -14,3 +14,10 @@ export interface ProductTypes {
     }
   ];
 }
+
+export interface SelectedProductTypes {
+  color: string;
+  storage: string | undefined;
+  power: number | undefined;
+  quantity: number;
+}

@@ -11,7 +11,7 @@ export const ProductPage = (): JSX.Element => {
 
   return (
     <Page>
-      <ProductDetail product={product.item} />
+      <ProductDetail product={product.item ? product.item : ""} />
     </Page>
   );
 };
