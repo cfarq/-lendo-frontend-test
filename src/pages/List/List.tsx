@@ -8,9 +8,6 @@ export const ListPage = (): JSX.Element => {
   const { data, error, isLoading } = useGetAllProductsQuery();
 
   return (
-    <Page>
-      <Loader />
-      {isLoading ? <div>Loading...</div> : <ProductList products={data} />}
-    </Page>
+    <Page>{isLoading ? <Loader /> : <ProductList products={data} />}</Page>
   );
 };

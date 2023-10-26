@@ -3,6 +3,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { Toaster } from "react-hot-toast";
 
 import { PageHeader } from "./components/Page";
+import { Loader } from "./components/Loader";
 
 const ListPage = lazy(() => import("./pages/List"));
 const ProductPage = lazy(() => import("./pages/Product"));
@@ -15,7 +16,7 @@ function App() {
         <Toaster />
       </div>
       <PageHeader />
-      <Suspense fallback={<div>Loading...</div>}>
+      <Suspense fallback={<Loader />}>
         <Routes>
           <Route path="/" element={<ListPage />} />
           <Route path="/product/:productId" element={<ProductPage />} />
