@@ -8,10 +8,7 @@ const ListPage = lazy(() => import("./pages/List"));
 const ProductPage = lazy(() => import("./pages/Product"));
 const CheckoutPage = lazy(() => import("./pages/Checkout"));
 
-import { useGetAllProductsQuery } from "./redux/productsApi";
-
 function App() {
-  const { data, error, isLoading } = useGetAllProductsQuery();
   return (
     <BrowserRouter>
       <div>

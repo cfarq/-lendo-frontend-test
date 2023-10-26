@@ -1,31 +1,14 @@
-import { useEffect, useState } from "react";
-
 import { Page } from "../../components/Page";
 import { ProductList } from "../../components/ProductList";
 
+import { useGetAllProductsQuery } from "../../redux/productsApi";
+
 export const ListPage = (): JSX.Element => {
-  useEffect(() => {
-    fetchList("../../data.json");
-  }, []);
-
-  const [products, setProducts] = useState([]);
-
-  async function fetchList(url: string) {
-    try {
-      const response = await fetch(url);
-
-      if (response.ok) {
-        const data = await response.json();
-        setProducts(data.items);
-      }
-    } catch (error) {
-      console.error(error);
-    }
-  }
+  const { data, error, isLoading } = useGetAllProductsQuery();
 
   return (
     <Page>
-      <ProductList products={products} />
+      {isLoading ? <div>Loading...</div> : <ProductList products={data} />}
     </Page>
   );
 };

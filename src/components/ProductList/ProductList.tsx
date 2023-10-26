@@ -1,12 +1,15 @@
 import { ProductListItem } from "../ProductListItem/ProductListItem";
 
 import { ProductTypes } from "../../types/entities";
+import { useGetProductQuery } from "../../redux/productsApi";
 
 interface ProductListProps {
   products: ProductTypes[];
 }
 
 export const ProductList = ({ products }: ProductListProps): JSX.Element => {
+  const { data } = useGetProductQuery(5);
+
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 mt-24 gap-4 px-10">
       {products.map((product: ProductTypes) => {
