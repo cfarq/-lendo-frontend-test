@@ -31,6 +31,13 @@ export const ProductDetail = ({ product }: ProductDetailProps): JSX.Element => {
     obj.quantity > max.quantity ? obj : max
   );
 
+  const compareOptions = (selectedOption, option) => {
+    const stringifiedSelectedOption = JSON.stringify(selectedOption);
+    const stringifiedOption = JSON.stringify(option);
+
+    return stringifiedSelectedOption === stringifiedOption;
+  };
+
   useEffect(() => {
     setSelectedOption(maxValueOfQuantity);
     // set selected option for item with biggest quantity in options array
@@ -62,7 +69,7 @@ export const ProductDetail = ({ product }: ProductDetailProps): JSX.Element => {
               <div
                 className={`p-3 border border-black  cursor-pointer hover:bg-white ${
                   option.quantity > 0 ? "" : "opacity-40"
-                }`}
+                } ${compareOptions(selectedOption, option) ? "bg-white" : ""}`}
                 key={index}
                 onClick={(e) => handleOptionClick(option)}
               >
