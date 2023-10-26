@@ -4,14 +4,20 @@ import { Page } from "../../components/Page";
 import { ProductDetail } from "../../components/ProductDetail";
 import { ProductTypes } from "../../types/entities";
 
-export const ProductPage = (): JSX.Element => {
-  const selectedItem = (state) => state.selectedItem;
+import { useGetProductQuery } from "../../redux/productsApi";
 
-  const product = useSelector(selectedItem, shallowEqual);
+export const ProductPage = (): JSX.Element => {
+  const productId = window.location.pathname.split("/")[2];
+
+  const { data, isLoading, error } = useGetProductQuery(productId);
+
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <Page>
-      <ProductDetail product={product.item ? product.item : ""} />
+      <ProductDetail product={data} />
     </Page>
   );
 };

@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
 import { ArrowCircleLeft } from "@phosphor-icons/react";
 import Button from "@mui/material/Button";
 
@@ -13,14 +12,12 @@ interface ProductDetailProps {
 
 export const ProductDetail = ({ product }: ProductDetailProps): JSX.Element => {
   const navigate = useNavigate();
-  const dispatch = useDispatch();
 
   const [selectedOption, setSelectedOption] = useState<Record<string, unknown>>(
     {}
   );
 
   const handleBackButtonClick = () => {
-    dispatch({ type: "selectedItem/CLEAR_SELECTED_ITEM" });
     navigate("/");
   };
 
@@ -29,17 +26,17 @@ export const ProductDetail = ({ product }: ProductDetailProps): JSX.Element => {
   };
 
   const handleAddToCartClick = () => {
-    dispatch({
-      type: "cart/UPDATE_CART_ITEM",
-      payload: {
-        id: product.id,
-        name: product.name,
-        price: product.price,
-        brand: product.brand,
-        weight: product.weight,
-        ...selectedOption,
-      },
-    });
+    // dispatch({
+    //   type: "cart/UPDATE_CART_ITEM",
+    //   payload: {
+    //     id: product.id,
+    //     name: product.name,
+    //     price: product.price,
+    //     brand: product.brand,
+    //     weight: product.weight,
+    //     ...selectedOption,
+    //   },
+    // });
     toast.success("Added to cart");
   };
 
