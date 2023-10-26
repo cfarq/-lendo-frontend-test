@@ -21,3 +21,15 @@ export interface SelectedProductTypes {
   power: number | undefined;
   quantity: number;
 }
+
+export interface CartItemTypes {
+  id: number;
+  name: string;
+  brand: string;
+  price: string;
+  weight: number;
+  color: string;
+  power?: number | undefined;
+  storage?: number | undefined;
+  quantity: number;
+}

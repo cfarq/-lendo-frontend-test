@@ -17,11 +17,13 @@ export const cartReducer = (state = { items: [] }, action) => {
     case CLEAR_CART:
       return { items: [] };
     case UPDATE_CART_ITEM:
-      const item = action.item;
+      const item = action.payload;
+
       if (item && item.quantity > 0) {
         const index = state.items.findIndex(
           (it) => it.product._id === item.product._id
         );
+        console.log("test");
         const newItems = [...state.items];
         if (index !== -1) {
           newItems[index] = { ...item };
@@ -36,10 +38,9 @@ export const cartReducer = (state = { items: [] }, action) => {
         );
         return { ...state, items };
       }
-
     case UPDATE_CART_ITEM_QUANTITY:
-      const quantity = action.quantity;
-      const product = action.product;
+      const quantity = action.payload.quantity;
+      const product = action.payload.product;
 
       if (quantity === 0) {
         const items = state.items.filter(

@@ -31,7 +31,7 @@ export const ProductListItem = ({
         <div className="font-bold">{product.name}</div>
         <div>{product.price} kr</div>
         {!product.available ? (
-          <div className="text-red-500">Out of stock</div>
+          <div className="text-red-500">Currently unavailable</div>
         ) : null}
       </div>
     </Link>
