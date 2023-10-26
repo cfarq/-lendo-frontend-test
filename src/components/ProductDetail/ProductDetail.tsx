@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { ArrowCircleLeft } from "@phosphor-icons/react";
@@ -27,6 +27,15 @@ export const ProductDetail = ({ product }: ProductDetailProps): JSX.Element => {
 
   const handleAddToCartClick = () => {};
 
+  const maxValueOfQuantity = product.options.reduce((max, obj) =>
+    obj.quantity > max.quantity ? obj : max
+  );
+
+  useEffect(() => {
+    setSelectedOption(maxValueOfQuantity);
+    // set selected option for item with biggest quantity in options array
+  }, [product.options]);
+
   return (
     <div className="mt-24 px-10">
       <div>
@@ -47,7 +56,7 @@ export const ProductDetail = ({ product }: ProductDetailProps): JSX.Element => {
         <div>{product.price} kr</div>
       </div>
       {product.options ? (
-        <div className="flex mb-8 space-x-4">
+        <div className="flex flex-wrap mb-8 space-x-4 space-y-4">
           {product.options.map((option, index) => {
             return (
               <div
@@ -55,7 +64,7 @@ export const ProductDetail = ({ product }: ProductDetailProps): JSX.Element => {
                   option.quantity > 0 ? "" : "opacity-40"
                 }`}
                 key={index}
-                onClick={() => handleOptionClick(option)}
+                onClick={(e) => handleOptionClick(option)}
               >
                 <div className="capitalize">{option.color}</div>
                 {option.storage ? <div>{option.storage} gb</div> : null}
@@ -67,9 +76,15 @@ export const ProductDetail = ({ product }: ProductDetailProps): JSX.Element => {
         </div>
       ) : null}
 
-      <div className="mb-5">
-        <Button variant="contained" disabled={selectedOption.quantity <= 0}>
+      <div className="mb-5 flex flex-col max-w-xs space-y-4">
+        <Button
+          variant="contained"
+          disabled={selectedOption.quantity <= 0 || !product.available}
+        >
           Add to Cart
+        </Button>
+        <Button variant="contained" color="secondary">
+          Go to Checkout
         </Button>
       </div>
 
