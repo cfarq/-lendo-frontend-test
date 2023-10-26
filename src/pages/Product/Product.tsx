@@ -1,5 +1,3 @@
-import { useSelector, shallowEqual } from "react-redux";
-
 import { Page } from "../../components/Page";
 import { ProductDetail } from "../../components/ProductDetail";
 import { ProductTypes } from "../../types/entities";

@@ -1,5 +1,4 @@
 import { Link } from "react-router-dom";
-import { useDispatch } from "react-redux";
 
 import { ProductTypes } from "../../types/entities";
 
@@ -10,19 +9,8 @@ interface ProductListItemProps {
 export const ProductListItem = ({
   product,
 }: ProductListItemProps): JSX.Element => {
-  const dispatch = useDispatch();
-
-  const handleClick = () => {
-    dispatch({ type: "selectedItem/CLEAR_SELECTED_ITEM" });
-    dispatch({ type: "selectedItem/SELECT_ITEM", payload: product });
-  };
-
   return (
-    <Link
-      to={`/product/${product.id}`}
-      onClick={() => handleClick()}
-      className="relative"
-    >
+    <Link to={`/product/${product.id}`} className="relative">
       <div
         className={`w-full bg-white overflow-hidden rounded-md p-5 h-full shadow-lg hover:bg-blue-50 flex flex-col justify-center ${
           !product.available ? "opacity-60" : ""
