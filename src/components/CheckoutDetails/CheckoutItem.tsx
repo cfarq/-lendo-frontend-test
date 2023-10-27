@@ -1,4 +1,3 @@
-import toast from "react-hot-toast";
 import { Link } from "react-router-dom";
 import {
   decreaseCartQuantity,
@@ -17,12 +16,10 @@ export const CheckoutItem = ({ item }: CheckoutItemProps): JSX.Element => {
 
   const handleRemoveFromCart = (item: CartItemTypes) => {
     dispatch(removeFromCart(item));
-    toast.error(`${item.name} removed from cart`);
   };
 
   const handleQuantityIncrease = (item: CartItemTypes) => {
     dispatch(addToCart(item));
-    toast.success(`${item.name} added to cart`);
   };
 
   const handleQuantityDecrease = (item: CartItemTypes) => {
@@ -44,7 +41,12 @@ export const CheckoutItem = ({ item }: CheckoutItemProps): JSX.Element => {
             <span>{item.variantDetails.storage}GB</span>
           ) : null}
         </div>
-        <button onClick={() => handleRemoveFromCart(item)}>Remove</button>
+        <button
+          className="inline-block"
+          onClick={() => handleRemoveFromCart(item)}
+        >
+          Remove
+        </button>
       </div>
       <div>{item.price}</div>
       <div className="flex p-6 rounded-md border border-slate-300 max-w-[120px] justify-around">
@@ -53,7 +55,7 @@ export const CheckoutItem = ({ item }: CheckoutItemProps): JSX.Element => {
           className="pl-2 pr-4"
         >
           -
-        </button>{" "}
+        </button>
         <div>{item.cartQuantity}</div>
         <button
           onClick={() => handleQuantityIncrease(item)}
@@ -62,7 +64,9 @@ export const CheckoutItem = ({ item }: CheckoutItemProps): JSX.Element => {
           +
         </button>
       </div>
-      <div>{parseInt(item.price) * item.cartQuantity} kr</div>
+      <div className="flex justify-end">
+        {parseInt(item.price) * item.cartQuantity} kr
+      </div>
     </div>
   );
 };

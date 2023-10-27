@@ -1,5 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { CartItemTypes } from "../types/entities";
+import toast from "react-hot-toast";
 
 const initialState = {
   cartItems: localStorage.getItem("cartItems")
@@ -21,10 +22,20 @@ const cartSlice = createSlice({
       );
 
       if (itemIndex >= 0) {
-        state.cartItems[itemIndex].cartQuantity += 1;
+        if (
+          state.cartItems[itemIndex].cartQuantity >=
+          state.cartItems[itemIndex].variantDetails.quantity
+        ) {
+          toast.error("Not enough items in stock");
+          return;
+        } else {
+          state.cartItems[itemIndex].cartQuantity += 1;
+          toast.success(`${state.cartItems[itemIndex].name} added to cart`);
+        }
       } else {
         const tempProduct = { ...action.payload, cartQuantity: 1 };
         state.cartItems.push(tempProduct);
+        toast.success(`${state.cartItems[itemIndex].name} added to cart`);
       }
 
       localStorage.setItem("cartItems", JSON.stringify(state.cartItems));
@@ -36,7 +47,7 @@ const cartSlice = createSlice({
       );
 
       state.cartItems = nextCartItems;
-
+      toast.error(`Item removed from cart`);
       localStorage.setItem("cartItems", JSON.stringify(state.cartItems));
     },
     decreaseCartQuantity(state, action) {

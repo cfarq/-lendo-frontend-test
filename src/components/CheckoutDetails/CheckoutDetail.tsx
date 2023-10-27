@@ -7,7 +7,6 @@ import { useSelector, useDispatch } from "react-redux";
 import { CheckoutItem } from "./CheckoutItem";
 import { CartItemTypes } from "../../types/entities";
 import { clearCart, getTotals } from "../../redux/cartSlice";
-import toast from "react-hot-toast";
 
 export const CheckoutDetails = ({}): JSX.Element => {
   const cart = useSelector((state) => state.cart);
@@ -19,7 +18,6 @@ export const CheckoutDetails = ({}): JSX.Element => {
 
   const handleClearCartClick = () => {
     dispatch(clearCart());
-    toast.success("Cart cleared");
   };
 
   return (

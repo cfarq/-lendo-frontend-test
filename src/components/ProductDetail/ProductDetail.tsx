@@ -5,7 +5,6 @@ import Button from "@mui/material/Button";
 import { useDispatch, useSelector } from "react-redux";
 
 import { ProductTypes, SelectedProductTypes } from "../../types/entities";
-import toast from "react-hot-toast";
 import { addToCart, getTotals } from "../../redux/cartSlice";
 
 interface ProductDetailProps {
@@ -45,7 +44,6 @@ export const ProductDetail = ({ product }: ProductDetailProps): JSX.Element => {
     };
 
     dispatch(addToCart(payload));
-    toast.success(`${product.name} added to cart`);
   };
 
   const itemWithHighestQuant = product.options.reduce((max, obj) =>
