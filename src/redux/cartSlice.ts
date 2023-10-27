@@ -27,7 +27,6 @@ const cartSlice = createSlice({
           state.cartItems[itemIndex].variantDetails.quantity
         ) {
           toast.error("Not enough items in stock");
-          return;
         } else {
           state.cartItems[itemIndex].cartQuantity += 1;
           toast.success(`${state.cartItems[itemIndex].name} added to cart`);
@@ -35,7 +34,7 @@ const cartSlice = createSlice({
       } else {
         const tempProduct = { ...action.payload, cartQuantity: 1 };
         state.cartItems.push(tempProduct);
-        toast.success(`${state.cartItems[itemIndex].name} added to cart`);
+        toast.success(`${tempProduct.name} added to cart`);
       }
 
       localStorage.setItem("cartItems", JSON.stringify(state.cartItems));
@@ -53,7 +52,7 @@ const cartSlice = createSlice({
     decreaseCartQuantity(state, action) {
       const itemIndex = state.cartItems.findIndex(
         (cartItem: CartItemTypes) =>
-          cartItem.variantId !== action.payload.variantId
+          cartItem.variantId === action.payload.variantId
       );
 
       if (state.cartItems[itemIndex].cartQuantity > 1) {
@@ -61,7 +60,6 @@ const cartSlice = createSlice({
       } else if (state.cartItems[itemIndex].cartQuantity === 1) {
         const nextCartItems = state.cartItems.filter(
           (cartItem: CartItemTypes) =>
-            cartItem.id !== action.payload.id &&
             cartItem.variantId !== action.payload.variantId
         );
 
@@ -72,6 +70,7 @@ const cartSlice = createSlice({
     },
     clearCart(state, action) {
       state.cartItems = [];
+      toast.success("Cart cleared");
       localStorage.setItem("cartItems", JSON.stringify(state.cartItems));
     },
     getTotals(state, action) {

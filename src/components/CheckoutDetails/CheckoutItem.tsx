@@ -48,8 +48,8 @@ export const CheckoutItem = ({ item }: CheckoutItemProps): JSX.Element => {
           Remove
         </button>
       </div>
-      <div>{item.price}</div>
-      <div className="flex p-6 rounded-md border border-slate-300 max-w-[120px] justify-around">
+      <div>{item.price} kr</div>
+      <div className="flex p-6 rounded-md border border-slate-400 max-w-[120px] justify-around">
         <button
           onClick={() => handleQuantityDecrease(item)}
           className="pl-2 pr-4"
@@ -58,8 +58,9 @@ export const CheckoutItem = ({ item }: CheckoutItemProps): JSX.Element => {
         </button>
         <div>{item.cartQuantity}</div>
         <button
+          disabled={item.cartQuantity >= item.variantDetails.quantity}
           onClick={() => handleQuantityIncrease(item)}
-          className="pl-4 pr-2"
+          className="pl-4 pr-2 disabled:opacity-50"
         >
           +
         </button>

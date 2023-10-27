@@ -71,7 +71,7 @@ export const ProductDetail = ({ product }: ProductDetailProps): JSX.Element => {
         </button>
       </div>
       <div className="mt-10 mb-5">
-        <div className="text-2xl font-bold">{product.name}</div>
+        <div className="text-2xl font-bold capitalize">{product.name}</div>
         <div
           className={`${product.available ? "text-green-700" : "text-red-500"}`}
         >
