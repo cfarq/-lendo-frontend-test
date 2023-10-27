@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { ArrowCircleLeft } from "@phosphor-icons/react";
 import Button from "@mui/material/Button";
 import { useDispatch, useSelector } from "react-redux";
@@ -24,6 +24,17 @@ export const ProductDetail = ({ product }: ProductDetailProps): JSX.Element => {
   const [selectedOption, setSelectedOption] = useState(
     {} as SelectedProductTypes
   );
+
+  if (!product) {
+    return (
+      <div className="absolute top-1/2 left-1/2 text-lg flex flex-col text-center">
+        Product not found
+        <Link className="text-blue-600" to="/">
+          Back to Products list
+        </Link>
+      </div>
+    );
+  }
 
   useEffect(() => {
     dispatch(getTotals(null));
@@ -64,8 +75,6 @@ export const ProductDetail = ({ product }: ProductDetailProps): JSX.Element => {
 
     return stringifiedSelectedOption === stringifiedOption;
   };
-
-  console.log(cart);
 
   return (
     <div className="mt-24 px-10">
