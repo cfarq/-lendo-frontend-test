@@ -4,7 +4,11 @@ import { ArrowCircleLeft } from "@phosphor-icons/react";
 import Button from "@mui/material/Button";
 import { useDispatch, useSelector } from "react-redux";
 
-import { ProductTypes, SelectedProductTypes } from "../../types/entities";
+import {
+  CartItemTypes,
+  ProductTypes,
+  SelectedProductTypes,
+} from "../../types/entities";
 import { addToCart, getTotals } from "../../redux/cartSlice";
 
 interface ProductDetailProps {
@@ -60,6 +64,8 @@ export const ProductDetail = ({ product }: ProductDetailProps): JSX.Element => {
     return stringifiedSelectedOption === stringifiedOption;
   };
 
+  console.log(cart);
+
   return (
     <div className="mt-24 px-10">
       <div>
@@ -93,7 +99,7 @@ export const ProductDetail = ({ product }: ProductDetailProps): JSX.Element => {
                 <div className="capitalize">{option.color}</div>
                 {option.storage ? <div>{option.storage}GB</div> : null}
                 {option.power ? <div>{option.power}W</div> : null}
-                <div>{option.quantity} in stock</div>
+                <div className="font-bold">{option.quantity} in stock</div>
               </div>
             );
           })}
@@ -105,7 +111,15 @@ export const ProductDetail = ({ product }: ProductDetailProps): JSX.Element => {
           <Button
             variant="contained"
             onClick={() => handleAddToCartClick(product)}
-            disabled={selectedOption.quantity <= 0 || !product.available}
+            disabled={
+              selectedOption.quantity <= 0 ||
+              !product.available ||
+              cart.cartItems.some(
+                (cartItem: CartItemTypes) =>
+                  cartItem.cartQuantity === selectedOption.quantity &&
+                  cartItem.variantId === selectedOption.id
+              )
+            }
           >
             Add to Cart
           </Button>
@@ -114,7 +128,7 @@ export const ProductDetail = ({ product }: ProductDetailProps): JSX.Element => {
         <Button
           variant="contained"
           onClick={() => navigate("/checkout")}
-          color="secondary"
+          color="success"
         >
           Go to Checkout
         </Button>
