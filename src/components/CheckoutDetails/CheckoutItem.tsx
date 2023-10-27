@@ -53,7 +53,7 @@ export const CheckoutItem = ({ item }: CheckoutItemProps): JSX.Element => {
           ) : null}
         </div>
       </div>
-      <div>{item.price} kr</div>
+      <div className="flex flex-col justify-center">{item.price} kr</div>
       <div className="flex px-2 py-3 rounded-md border border-slate-400 max-w-[120px] justify-around">
         <button
           onClick={() => handleQuantityDecrease(item)}
@@ -61,7 +61,7 @@ export const CheckoutItem = ({ item }: CheckoutItemProps): JSX.Element => {
         >
           -
         </button>
-        <div>{item.cartQuantity}</div>
+        <div className="flex flex-col justify-center">{item.cartQuantity}</div>
         <button
           disabled={item.cartQuantity >= item.variantDetails.quantity}
           onClick={() => handleQuantityIncrease(item)}
@@ -71,7 +71,9 @@ export const CheckoutItem = ({ item }: CheckoutItemProps): JSX.Element => {
         </button>
       </div>
       <div className="flex justify-end">
-        {parseInt(item.price) * item.cartQuantity} kr
+        <div className="flex flex-col justify-center">
+          {parseInt(item.price) * item.cartQuantity} kr
+        </div>
       </div>
     </div>
   );
