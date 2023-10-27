@@ -12,7 +12,7 @@ export const ProductListItem = ({
   return (
     <Link to={`/product/${product.id}`} className="relative">
       <div
-        className={`w-full bg-white overflow-hidden rounded-md p-5 h-full shadow-lg hover:bg-blue-50 flex flex-col justify-center ${
+        className={`w-full bg-white overflow-hidden min-h-[112px] rounded-md p-5 h-full shadow-lg hover:bg-blue-50 flex flex-col justify-center ${
           !product.available ? "opacity-60" : ""
         }`}
       >

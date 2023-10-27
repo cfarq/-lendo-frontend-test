@@ -29,8 +29,19 @@ export const CheckoutItem = ({ item }: CheckoutItemProps): JSX.Element => {
   return (
     <div className="grid grid-cols-4 py-5 border-b border-b-slate-400">
       <div className="flex flex-col">
-        <div>
-          <Link to={`/product/${item.id}`}>{item.name}</Link>
+        <div className="flex">
+          <Link
+            className="capitalize hover:text-blue-600"
+            to={`/product/${item.id}`}
+          >
+            {item.name}
+          </Link>
+          <button
+            className="inline-block ml-2 text-sm text-red-500 hover:text-red-600"
+            onClick={() => handleRemoveFromCart(item)}
+          >
+            Remove
+          </button>
         </div>
         <div className="space-x-2 text-sm text-gray-600">
           <span className="capitalize">{item.variantDetails.color}</span>
@@ -41,18 +52,12 @@ export const CheckoutItem = ({ item }: CheckoutItemProps): JSX.Element => {
             <span>{item.variantDetails.storage}GB</span>
           ) : null}
         </div>
-        <button
-          className="inline-block"
-          onClick={() => handleRemoveFromCart(item)}
-        >
-          Remove
-        </button>
       </div>
       <div>{item.price} kr</div>
-      <div className="flex p-6 rounded-md border border-slate-400 max-w-[120px] justify-around">
+      <div className="flex px-2 py-3 rounded-md border border-slate-400 max-w-[120px] justify-around">
         <button
           onClick={() => handleQuantityDecrease(item)}
-          className="pl-2 pr-4"
+          className="pl-2 pr-2"
         >
           -
         </button>
@@ -60,7 +65,7 @@ export const CheckoutItem = ({ item }: CheckoutItemProps): JSX.Element => {
         <button
           disabled={item.cartQuantity >= item.variantDetails.quantity}
           onClick={() => handleQuantityIncrease(item)}
-          className="pl-4 pr-2 disabled:opacity-50"
+          className="pl-2 pr-2 disabled:opacity-50"
         >
           +
         </button>
