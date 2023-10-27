@@ -42,7 +42,7 @@ export const ProductDetail = ({ product }: ProductDetailProps): JSX.Element => {
     // });
 
     dispatch(addToCart(product));
-    toast.success("Added to cart");
+    toast.success(`${product.name} added to cart`);
   };
 
   const itemWithHighestQuant = product.options.reduce((max, obj) =>
