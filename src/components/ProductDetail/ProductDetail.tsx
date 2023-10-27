@@ -108,7 +108,7 @@ export const ProductDetail = ({ product }: ProductDetailProps): JSX.Element => {
                     : ""
                 }`}
                 key={index}
-                onClick={(e) =>
+                onClick={() =>
                   handleOptionClick(option as SelectedProductTypes)
                 }
               >
