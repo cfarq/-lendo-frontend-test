@@ -20,6 +20,7 @@ export interface SelectedProductTypes {
   storage: string | undefined;
   power: number | undefined;
   quantity: number;
+  id: number | string;
 }
 
 export interface CartItemTypes {

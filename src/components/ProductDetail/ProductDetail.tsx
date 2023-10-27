@@ -21,8 +21,8 @@ export const ProductDetail = ({ product }: ProductDetailProps): JSX.Element => {
   const cart = useSelector((state: RootState) => state.cart);
   const dispatch = useDispatch();
 
-  const [selectedOption, setSelectedOption] = useState<Record<string, unknown>>(
-    {}
+  const [selectedOption, setSelectedOption] = useState(
+    {} as SelectedProductTypes
   );
 
   useEffect(() => {
@@ -30,7 +30,7 @@ export const ProductDetail = ({ product }: ProductDetailProps): JSX.Element => {
   }, [cart]);
 
   useEffect(() => {
-    setSelectedOption(itemWithHighestQuant);
+    setSelectedOption(itemWithHighestQuant as SelectedProductTypes);
   }, [product.options]);
 
   const handleBackButtonClick = () => {
@@ -93,9 +93,15 @@ export const ProductDetail = ({ product }: ProductDetailProps): JSX.Element => {
               <div
                 className={`p-1.5 md:p-3 border text-xs md:text-sm border-black  cursor-pointer hover:bg-white ${
                   option.quantity > 0 ? "" : "opacity-40"
-                } ${compareOptions(selectedOption, option) ? "bg-white" : ""}`}
+                } ${
+                  compareOptions(selectedOption, option as SelectedProductTypes)
+                    ? "bg-white"
+                    : ""
+                }`}
                 key={index}
-                onClick={(e) => handleOptionClick(option)}
+                onClick={(e) =>
+                  handleOptionClick(option as SelectedProductTypes)
+                }
               >
                 <div className="capitalize">{option.color}</div>
                 {option.storage ? <div>{option.storage}GB</div> : null}
@@ -118,7 +124,8 @@ export const ProductDetail = ({ product }: ProductDetailProps): JSX.Element => {
               cart.cartItems.some(
                 (cartItem: CartItemTypes) =>
                   cartItem.cartQuantity === selectedOption.quantity &&
-                  cartItem.variantId === selectedOption.id
+                  parseInt(cartItem.variantId) ===
+                    parseInt(selectedOption.id as string)
               )
             }
           >
