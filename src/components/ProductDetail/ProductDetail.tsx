@@ -2,9 +2,11 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { ArrowCircleLeft } from "@phosphor-icons/react";
 import Button from "@mui/material/Button";
+import { useDispatch } from "react-redux";
 
 import { ProductTypes, SelectedProductTypes } from "../../types/entities";
 import toast from "react-hot-toast";
+import { addToCart } from "../../redux/cartSlice";
 
 interface ProductDetailProps {
   product: ProductTypes;
@@ -12,6 +14,7 @@ interface ProductDetailProps {
 
 export const ProductDetail = ({ product }: ProductDetailProps): JSX.Element => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const [selectedOption, setSelectedOption] = useState<Record<string, unknown>>(
     {}
@@ -25,7 +28,7 @@ export const ProductDetail = ({ product }: ProductDetailProps): JSX.Element => {
     setSelectedOption(option);
   };
 
-  const handleAddToCartClick = () => {
+  const handleAddToCartClick = (product) => {
     // dispatch({
     //   type: "cart/UPDATE_CART_ITEM",
     //   payload: {
@@ -37,6 +40,8 @@ export const ProductDetail = ({ product }: ProductDetailProps): JSX.Element => {
     //     ...selectedOption,
     //   },
     // });
+
+    dispatch(addToCart(product));
     toast.success("Added to cart");
   };
 
@@ -103,7 +108,7 @@ export const ProductDetail = ({ product }: ProductDetailProps): JSX.Element => {
         {selectedOption ? (
           <Button
             variant="contained"
-            onClick={handleAddToCartClick}
+            onClick={() => handleAddToCartClick(product)}
             disabled={selectedOption.quantity <= 0 || !product.available}
           >
             Add to Cart

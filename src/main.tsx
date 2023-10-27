@@ -5,12 +5,14 @@ import App from "./App.tsx";
 import "./index.css";
 
 import productsReducer, { productsFetch } from "./redux/productsSlice";
+import cartReducer from "./redux/cartSlice";
 import { productsApi } from "./redux/productsApi";
 import { configureStore } from "@reduxjs/toolkit";
 
 const store = configureStore({
   reducer: {
     products: productsReducer,
+    cart: cartReducer,
     [productsApi.reducerPath]: productsApi.reducer,
   },
   middleware: (getDefaultMiddleware) =>
