@@ -5,7 +5,7 @@ import { Loader } from "../../components/Loader";
 import { useGetAllProductsQuery } from "../../redux/productsApi";
 
 export const ListPage = (): JSX.Element => {
-  const { data, isLoading } = useGetAllProductsQuery();
+  const { data, isLoading } = useGetAllProductsQuery(null);
 
   return (
     <Page>{isLoading ? <Loader /> : <ProductList products={data} />}</Page>

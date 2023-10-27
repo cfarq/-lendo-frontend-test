@@ -25,7 +25,7 @@ export const ProductDetail = ({ product }: ProductDetailProps): JSX.Element => {
   );
 
   useEffect(() => {
-    dispatch(getTotals());
+    dispatch(getTotals(null));
   }, [cart]);
 
   useEffect(() => {

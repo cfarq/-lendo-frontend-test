@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 import { CartItemTypes } from "../types/entities";
 import toast from "react-hot-toast";
 
-interface CartState {
+export interface CartState {
   cartItems: CartItemTypes[];
   cartTotalQuantity: number;
   cartTotalAmount: number;

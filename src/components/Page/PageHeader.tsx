@@ -8,7 +8,7 @@ export const PageHeader = ({}): JSX.Element => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(getTotals());
+    dispatch(getTotals(null));
   }, [cartTotalQuantity, cart]);
 
   return (

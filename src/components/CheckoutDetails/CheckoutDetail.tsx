@@ -13,11 +13,11 @@ export const CheckoutDetails = ({}): JSX.Element => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(getTotals());
+    dispatch(getTotals(null));
   }, [cart]);
 
   const handleClearCartClick = () => {
-    dispatch(clearCart());
+    dispatch(clearCart(null));
   };
 
   return (
