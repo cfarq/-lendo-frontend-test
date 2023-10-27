@@ -1,4 +1,5 @@
 import toast from "react-hot-toast";
+import { Link } from "react-router-dom";
 import {
   decreaseCartQuantity,
   removeFromCart,
@@ -29,9 +30,20 @@ export const CheckoutItem = ({ item }: CheckoutItemProps): JSX.Element => {
   };
 
   return (
-    <div className="grid grid-cols-5 py-5 border-b border-b-slate-400">
+    <div className="grid grid-cols-4 py-5 border-b border-b-slate-400">
       <div className="flex flex-col">
-        <span>{item.name}</span>
+        <div>
+          <Link to={`/product/${item.id}`}>{item.name}</Link>
+        </div>
+        <div className="space-x-2 text-sm text-gray-600">
+          <span className="capitalize">{item.variantDetails.color}</span>
+          {item.variantDetails.power ? (
+            <span>{item.variantDetails.power}W</span>
+          ) : null}
+          {item.variantDetails.storage ? (
+            <span>{item.variantDetails.storage}GB</span>
+          ) : null}
+        </div>
         <button onClick={() => handleRemoveFromCart(item)}>Remove</button>
       </div>
       <div>{item.price}</div>

@@ -38,7 +38,7 @@ export const CheckoutDetails = ({}): JSX.Element => {
           <div className="text-xl">Your cart is empty</div>
         ) : (
           <>
-            <div className="grid grid-cols-5 border-b border-b-slate-400 py-5">
+            <div className="grid grid-cols-4 border-b border-b-slate-400 py-5">
               <div>Product</div>
               <div>Price</div>
               <div>Quantity</div>
@@ -46,7 +46,9 @@ export const CheckoutDetails = ({}): JSX.Element => {
             </div>
             <div className="grid grid-cols-1 gap-4 mb-6">
               {cart.cartItems?.map((cartItem: CartItemTypes) => {
-                return <CheckoutItem key={cartItem.id} item={cartItem} />;
+                return (
+                  <CheckoutItem key={cartItem.variantId} item={cartItem} />
+                );
               })}
             </div>
           </>

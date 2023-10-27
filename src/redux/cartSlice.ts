@@ -1,8 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { CartItemTypes } from "../types/entities";
 
 const initialState = {
   cartItems: localStorage.getItem("cartItems")
-    ? JSON.parse(localStorage.getItem("cartItems"))
+    ? JSON.parse(localStorage.getItem("cartItems") as string)
     : [],
   cartTotalQuantity: 0,
   cartTotalAmount: 0,
@@ -14,7 +15,9 @@ const cartSlice = createSlice({
   reducers: {
     addToCart(state, action) {
       const itemIndex = state.cartItems.findIndex(
-        (item) => item.id === action.payload.id
+        (cartItem: CartItemTypes) =>
+          cartItem.id === action.payload.id &&
+          cartItem.variantId === action.payload.variantId
       );
 
       if (itemIndex >= 0) {
@@ -28,22 +31,27 @@ const cartSlice = createSlice({
     },
     removeFromCart(state, action) {
       const nextCartItems = state.cartItems.filter(
-        (cartItem) => cartItem.id !== action.payload.id
+        (cartItem: CartItemTypes) =>
+          cartItem.variantId !== action.payload.variantId
       );
 
       state.cartItems = nextCartItems;
+
       localStorage.setItem("cartItems", JSON.stringify(state.cartItems));
     },
     decreaseCartQuantity(state, action) {
       const itemIndex = state.cartItems.findIndex(
-        (cartItem) => cartItem.id === action.payload.id
+        (cartItem: CartItemTypes) =>
+          cartItem.variantId !== action.payload.variantId
       );
 
       if (state.cartItems[itemIndex].cartQuantity > 1) {
         state.cartItems[itemIndex].cartQuantity -= 1;
       } else if (state.cartItems[itemIndex].cartQuantity === 1) {
         const nextCartItems = state.cartItems.filter(
-          (cartItem) => cartItem.id !== action.payload.id
+          (cartItem: CartItemTypes) =>
+            cartItem.id !== action.payload.id &&
+            cartItem.variantId !== action.payload.variantId
         );
 
         state.cartItems = nextCartItems;

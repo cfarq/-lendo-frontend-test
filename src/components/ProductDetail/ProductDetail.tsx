@@ -25,6 +25,10 @@ export const ProductDetail = ({ product }: ProductDetailProps): JSX.Element => {
     dispatch(getTotals());
   }, [cart]);
 
+  useEffect(() => {
+    setSelectedOption(itemWithHighestQuant);
+  }, [product.options]);
+
   const handleBackButtonClick = () => {
     navigate("/");
   };
@@ -33,8 +37,14 @@ export const ProductDetail = ({ product }: ProductDetailProps): JSX.Element => {
     setSelectedOption(option);
   };
 
-  const handleAddToCartClick = (product) => {
-    dispatch(addToCart(product));
+  const handleAddToCartClick = (product: ProductTypes) => {
+    const payload = {
+      ...product,
+      variantId: selectedOption.id,
+      variantDetails: selectedOption,
+    };
+
+    dispatch(addToCart(payload));
     toast.success(`${product.name} added to cart`);
   };
 
@@ -51,10 +61,6 @@ export const ProductDetail = ({ product }: ProductDetailProps): JSX.Element => {
 
     return stringifiedSelectedOption === stringifiedOption;
   };
-
-  useEffect(() => {
-    setSelectedOption(itemWithHighestQuant);
-  }, [product.options]);
 
   return (
     <div className="mt-24 px-10">
@@ -87,8 +93,8 @@ export const ProductDetail = ({ product }: ProductDetailProps): JSX.Element => {
                 onClick={(e) => handleOptionClick(option)}
               >
                 <div className="capitalize">{option.color}</div>
-                {option.storage ? <div>{option.storage} gb</div> : null}
-                {option.power ? <div>{option.power} watts</div> : null}
+                {option.storage ? <div>{option.storage}GB</div> : null}
+                {option.power ? <div>{option.power}W</div> : null}
                 <div>{option.quantity} in stock</div>
               </div>
             );

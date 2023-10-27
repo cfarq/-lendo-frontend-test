@@ -33,4 +33,11 @@ export interface CartItemTypes {
   storage?: number | undefined;
   quantity: number;
   cartQuantity: number;
+  variantId: string;
+  variantDetails: {
+    color: string;
+    power?: number;
+    storage?: number;
+    quantity: number;
+  };
 }
