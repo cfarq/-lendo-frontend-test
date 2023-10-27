@@ -2,7 +2,13 @@ import { createSlice } from "@reduxjs/toolkit";
 import { CartItemTypes } from "../types/entities";
 import toast from "react-hot-toast";
 
-const initialState = {
+interface CartState {
+  cartItems: CartItemTypes[];
+  cartTotalQuantity: number;
+  cartTotalAmount: number;
+}
+
+const initialState: CartState = {
   cartItems: localStorage.getItem("cartItems")
     ? JSON.parse(localStorage.getItem("cartItems") as string)
     : [],
@@ -77,7 +83,7 @@ const cartSlice = createSlice({
       let { total, quantity } = state.cartItems.reduce(
         (cartTotal, cartItem) => {
           const { price, cartQuantity } = cartItem;
-          const itemTotal = price * cartQuantity;
+          const itemTotal = parseInt(price) * cartQuantity;
 
           cartTotal.total += itemTotal;
           cartTotal.quantity += cartQuantity;
