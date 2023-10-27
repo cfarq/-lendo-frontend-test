@@ -7,9 +7,10 @@ import { useSelector, useDispatch } from "react-redux";
 import { CheckoutItem } from "./CheckoutItem";
 import { CartItemTypes } from "../../types/entities";
 import { clearCart, getTotals } from "../../redux/cartSlice";
+import { RootState } from "../../main";
 
 export const CheckoutDetails = ({}): JSX.Element => {
-  const cart = useSelector((state) => state.cart);
+  const cart = useSelector((state: RootState) => state.cart);
   const dispatch = useDispatch();
 
   useEffect(() => {

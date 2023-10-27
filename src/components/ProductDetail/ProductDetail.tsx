@@ -10,6 +10,7 @@ import {
   SelectedProductTypes,
 } from "../../types/entities";
 import { addToCart, getTotals } from "../../redux/cartSlice";
+import { RootState } from "../../main";
 
 interface ProductDetailProps {
   product: ProductTypes;
@@ -17,7 +18,7 @@ interface ProductDetailProps {
 
 export const ProductDetail = ({ product }: ProductDetailProps): JSX.Element => {
   const navigate = useNavigate();
-  const cart = useSelector((state) => state.cart);
+  const cart = useSelector((state: RootState) => state.cart);
   const dispatch = useDispatch();
 
   const [selectedOption, setSelectedOption] = useState<Record<string, unknown>>(
