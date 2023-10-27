@@ -1,45 +1,26 @@
+import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { ArrowCircleLeft } from "@phosphor-icons/react";
 import { Button } from "@mui/material";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 
 import { CheckoutItem } from "./CheckoutItem";
-
-const DUMMY_DATA = [
-  {
-    id: 1,
-    name: "Product 1",
-    brand: "Brand 1",
-    weight: 1,
-    color: "red",
-    storage: 64,
-    price: 100,
-    quantity: 1,
-  },
-  {
-    id: 2,
-    name: "Product 2",
-    brand: "Brand 2",
-    weight: 2,
-    color: "blue",
-    storage: 654,
-    price: 1000,
-    quantity: 1,
-  },
-  {
-    id: 3,
-    name: "Product 3",
-    brand: "Brand 3",
-    weight: 3,
-    color: "green",
-    power: 64,
-    price: 1020,
-    quantity: 1,
-  },
-];
+import { CartItemTypes } from "../../types/entities";
+import { clearCart, getTotals } from "../../redux/cartSlice";
+import toast from "react-hot-toast";
 
 export const CheckoutDetails = ({}): JSX.Element => {
   const cart = useSelector((state) => state.cart);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getTotals());
+  }, [cart]);
+
+  const handleClearCartClick = () => {
+    dispatch(clearCart());
+    toast.success("Cart cleared");
+  };
 
   return (
     <div className="mt-24 px-10">
@@ -64,7 +45,7 @@ export const CheckoutDetails = ({}): JSX.Element => {
               <div>Total</div>
             </div>
             <div className="grid grid-cols-1 gap-4 mb-6">
-              {cart.cartItems?.map((cartItem) => {
+              {cart.cartItems?.map((cartItem: CartItemTypes) => {
                 return <CheckoutItem key={cartItem.id} item={cartItem} />;
               })}
             </div>
@@ -74,11 +55,14 @@ export const CheckoutDetails = ({}): JSX.Element => {
 
       <div className="flex justify-between">
         <div>
-          <Button variant="contained">Clear cart</Button>
+          {cart.cartItems.length ? (
+            <Button onClick={() => handleClearCartClick()} variant="contained">
+              Clear cart
+            </Button>
+          ) : null}
         </div>
         <div>
-          <div>
-            <div>Subtotal</div>
+          <div className="mb-4">
             <div>Total: {cart.cartTotalAmount} kr</div>
           </div>
           <Button variant="contained" color="success">

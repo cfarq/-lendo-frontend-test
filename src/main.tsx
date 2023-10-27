@@ -4,8 +4,8 @@ import { Provider } from "react-redux";
 import App from "./App.tsx";
 import "./index.css";
 
-import productsReducer, { productsFetch } from "./redux/productsSlice";
-import cartReducer from "./redux/cartSlice";
+import productsReducer from "./redux/productsSlice";
+import cartReducer, { getTotals } from "./redux/cartSlice";
 import { productsApi } from "./redux/productsApi";
 import { configureStore } from "@reduxjs/toolkit";
 
@@ -19,7 +19,7 @@ const store = configureStore({
     getDefaultMiddleware().concat(productsApi.middleware),
 });
 
-store.dispatch(productsFetch());
+store.dispatch(getTotals());
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>

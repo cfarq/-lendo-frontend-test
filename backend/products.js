@@ -8,21 +8,25 @@ const products = [
     weight: 0.2,
     options: [
       {
+        id: 1,
         color: "white",
         power: 6.5,
         quantity: 1,
       },
       {
+        id: 2,
         color: "white",
         power: 9.5,
         quantity: 2,
       },
       {
+        id: 3,
         color: "red",
         power: 6.5,
         quantity: 3,
       },
       {
+        id: 4,
         color: "red",
         power: 9.5,
         quantity: 4,
@@ -38,26 +42,31 @@ const products = [
     weight: 0.2,
     options: [
       {
+        id: 1,
         color: "white",
         power: 6.5,
         quantity: 1,
       },
       {
+        id: 2,
         color: "white",
         power: 9.5,
         quantity: 2,
       },
       {
+        id: 3,
         color: "red",
         power: 6.5,
         quantity: 1,
       },
       {
+        id: 4,
         color: "red",
         power: 9.5,
         quantity: 6,
       },
       {
+        id: 5,
         color: "green",
         power: 6.5,
         quantity: 0,
@@ -73,26 +82,31 @@ const products = [
     weight: 2.1,
     options: [
       {
+        id: 1,
         color: "black",
         storage: "250",
         quantity: 5,
       },
       {
+        id: 2,
         color: "black",
         storage: "500",
         quantity: 1,
       },
       {
+        id: 3,
         color: "black",
         storage: "1000",
         quantity: 4,
       },
       {
+        id: 4,
         color: "white",
         storage: "250",
         quantity: 3,
       },
       {
+        id: 5,
         color: "white",
         storage: "500",
         quantity: 0,
@@ -108,26 +122,31 @@ const products = [
     weight: 1.6,
     options: [
       {
+        id: 1,
         color: "black",
         storage: "250",
         quantity: 0,
       },
       {
+        id: 2,
         color: "black",
         storage: "500",
         quantity: 0,
       },
       {
+        id: 3,
         color: "white",
         storage: "250",
         quantity: 7,
       },
       {
+        id: 4,
         color: "white",
         storage: "500",
         quantity: 5,
       },
       {
+        id: 5,
         color: "red",
         storage: "500",
         quantity: 5,
@@ -143,14 +162,17 @@ const products = [
     weight: 0.5,
     options: [
       {
+        id: 1,
         color: "black",
         quantity: 15,
       },
       {
+        id: 2,
         color: "white",
         quantity: 0,
       },
       {
+        id: 3,
         color: "red",
         quantity: 1,
       },
@@ -165,14 +187,17 @@ const products = [
     weight: 0.5,
     options: [
       {
+        id: 1,
         color: "black",
         quantity: 1,
       },
       {
+        id: 2,
         color: "white",
         quantity: 11,
       },
       {
+        id: 3,
         color: "orange",
         quantity: 2,
       },
@@ -187,10 +212,12 @@ const products = [
     weight: 0.4,
     options: [
       {
+        id: 1,
         color: "green",
         quantity: 0,
       },
       {
+        id: 2,
         color: "white",
         quantity: 0,
       },
@@ -205,6 +232,7 @@ const products = [
     weight: 8.2,
     options: [
       {
+        id: 1,
         color: "black",
         quantity: 19,
       },
@@ -219,6 +247,7 @@ const products = [
     weight: 3.9,
     options: [
       {
+        id: 1,
         color: "black",
         quantity: 3,
       },
@@ -233,10 +262,12 @@ const products = [
     weight: 0.8,
     options: [
       {
+        id: 1,
         color: "black",
         quantity: 3,
       },
       {
+        id: 2,
         color: "red",
         quantity: 9,
       },

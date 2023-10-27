@@ -2,11 +2,11 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { ArrowCircleLeft } from "@phosphor-icons/react";
 import Button from "@mui/material/Button";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 import { ProductTypes, SelectedProductTypes } from "../../types/entities";
 import toast from "react-hot-toast";
-import { addToCart } from "../../redux/cartSlice";
+import { addToCart, getTotals } from "../../redux/cartSlice";
 
 interface ProductDetailProps {
   product: ProductTypes;
@@ -14,11 +14,16 @@ interface ProductDetailProps {
 
 export const ProductDetail = ({ product }: ProductDetailProps): JSX.Element => {
   const navigate = useNavigate();
+  const cart = useSelector((state) => state.cart);
   const dispatch = useDispatch();
 
   const [selectedOption, setSelectedOption] = useState<Record<string, unknown>>(
     {}
   );
+
+  useEffect(() => {
+    dispatch(getTotals());
+  }, [cart]);
 
   const handleBackButtonClick = () => {
     navigate("/");
@@ -29,18 +34,6 @@ export const ProductDetail = ({ product }: ProductDetailProps): JSX.Element => {
   };
 
   const handleAddToCartClick = (product) => {
-    // dispatch({
-    //   type: "cart/UPDATE_CART_ITEM",
-    //   payload: {
-    //     id: product.id,
-    //     name: product.name,
-    //     price: product.price,
-    //     brand: product.brand,
-    //     weight: product.weight,
-    //     ...selectedOption,
-    //   },
-    // });
-
     dispatch(addToCart(product));
     toast.success(`${product.name} added to cart`);
   };
@@ -61,7 +54,6 @@ export const ProductDetail = ({ product }: ProductDetailProps): JSX.Element => {
 
   useEffect(() => {
     setSelectedOption(itemWithHighestQuant);
-    // set selected option for item with biggest quantity in options array
   }, [product.options]);
 
   return (

@@ -42,7 +42,7 @@ export const CheckoutItem = ({ item }: CheckoutItemProps): JSX.Element => {
         >
           -
         </button>{" "}
-        <div>{item.cartQuantity}</div>{" "}
+        <div>{item.cartQuantity}</div>
         <button
           onClick={() => handleQuantityIncrease(item)}
           className="pl-4 pr-2"
