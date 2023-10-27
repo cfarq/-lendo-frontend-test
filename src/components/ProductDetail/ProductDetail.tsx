@@ -100,7 +100,7 @@ export const ProductDetail = ({ product }: ProductDetailProps): JSX.Element => {
           {product.options.map((option, index) => {
             return (
               <div
-                className={`p-1.5 md:p-3 border text-xs md:text-sm border-black  cursor-pointer hover:bg-white ${
+                className={`flex flex-col justify-center p-1.5 md:p-3 border text-xs md:text-sm border-black  cursor-pointer hover:bg-white ${
                   option.quantity > 0 ? "" : "opacity-40"
                 } ${
                   compareOptions(selectedOption, option as SelectedProductTypes)
