@@ -87,7 +87,7 @@ export const ProductDetail = ({ product }: ProductDetailProps): JSX.Element => {
         <div>{product.price} kr</div>
       </div>
       {product.options ? (
-        <div className="flex flex-wrap mb-8 space-x-2 md:space-x-4 space-y-2 md:space-y-4">
+        <div className={`grid mb-8 grid-cols-2 md:grid-cols-6 gap-2 max-w-xl`}>
           {product.options.map((option, index) => {
             return (
               <div
