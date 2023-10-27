@@ -37,7 +37,7 @@ export const CheckoutDetails = ({}): JSX.Element => {
           <div className="text-xl">Your cart is empty</div>
         ) : (
           <>
-            <div className="grid grid-cols-4 border-b border-b-slate-400 py-5 font-bold">
+            <div className="grid-cols-4 border-b border-b-slate-400 py-5 font-bold hidden md:grid">
               <div>Product</div>
               <div>Price</div>
               <div>Quantity</div>
