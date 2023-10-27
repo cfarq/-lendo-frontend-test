@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { ArrowCircleLeft } from "@phosphor-icons/react";
 import { Button } from "@mui/material";
+import { useSelector } from "react-redux";
 
 import { CheckoutItem } from "./CheckoutItem";
 
@@ -38,6 +39,8 @@ const DUMMY_DATA = [
 ];
 
 export const CheckoutDetails = ({}): JSX.Element => {
+  const cart = useSelector((state) => state.cart);
+
   return (
     <div className="mt-24 px-10">
       <div>
@@ -50,16 +53,38 @@ export const CheckoutDetails = ({}): JSX.Element => {
           </Link>
         </div>
         <div className="text-2xl font-bold mb-6">Checkout</div>
-        <div className="grid grid-cols-1 gap-4 mb-6">
-          {DUMMY_DATA.map((item, index) => {
-            return <CheckoutItem key={index} item={item} />;
-          })}
-        </div>
+        {cart.cartItems.length === 0 ? (
+          <div className="text-xl">Your cart is empty</div>
+        ) : (
+          <>
+            <div className="grid grid-cols-5 border-b border-b-slate-400 py-5">
+              <div>Product</div>
+              <div>Price</div>
+              <div>Quantity</div>
+              <div>Total</div>
+            </div>
+            <div className="grid grid-cols-1 gap-4 mb-6">
+              {cart.cartItems?.map((cartItem) => {
+                return <CheckoutItem key={cartItem.id} item={cartItem} />;
+              })}
+            </div>
+          </>
+        )}
       </div>
-      <div className="flex justify-end">
-        <Button variant="contained" color="success">
-          Pay now
-        </Button>
+
+      <div className="flex justify-between">
+        <div>
+          <Button variant="contained">Clear cart</Button>
+        </div>
+        <div>
+          <div>
+            <div>Subtotal</div>
+            <div>Total: {cart.cartTotalAmount} kr</div>
+          </div>
+          <Button variant="contained" color="success">
+            Pay now
+          </Button>
+        </div>
       </div>
     </div>
   );

@@ -32,4 +32,5 @@ export interface CartItemTypes {
   power?: number | undefined;
   storage?: number | undefined;
   quantity: number;
+  cartQuantity: number;
 }
