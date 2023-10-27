@@ -28,7 +28,7 @@ export const CheckoutItem = ({ item }: CheckoutItemProps): JSX.Element => {
 
   return (
     <div className="grid grid-cols-4 py-5 border-b border-b-slate-400">
-      <div className="flex flex-col">
+      <div className="flex flex-col justify-center pr-2">
         <div className="flex">
           <Link
             className="capitalize hover:text-blue-600"

@@ -19,10 +19,7 @@ export const PageHeader = ({}): JSX.Element => {
       </div>
       <div>
         <Link className="flex" to="/checkout">
-          Cart{" "}
-          <span className="rounded-full ml-2 w-6 h-6 bg-red-600 flex flex-col text-center justify-center">
-            {cartTotalQuantity}
-          </span>
+          Cart ({cartTotalQuantity})
         </Link>
       </div>
     </div>
