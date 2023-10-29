@@ -75,7 +75,9 @@ export const CheckoutItem = ({ item }: CheckoutItemProps): JSX.Element => {
       </div>
       <div className="flex justify-end">
         <div className="flex md:flex-col justify-end md:justify-center">
-          <span className="inline-block mr-2 md:hidden font-bold">Price</span>
+          <span className="inline-block mr-2 md:hidden font-bold text-right">
+            Total Item Price
+          </span>
           <span className="inline-block md:inline">
             {parseInt(item.price) * item.cartQuantity} kr
           </span>
