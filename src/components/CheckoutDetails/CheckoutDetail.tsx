@@ -34,7 +34,14 @@ export const CheckoutDetails = ({}): JSX.Element => {
         </div>
         <div className="text-2xl font-bold mb-6">Checkout</div>
         {cart.cartItems.length === 0 ? (
-          <div className="text-xl">Your cart is empty</div>
+          <>
+            <div className="text-2xl text-center">Your cart is empty</div>
+            <div className="text-center">
+              <Link className="text-blue-600" to="/">
+                Continue shopping
+              </Link>
+            </div>
+          </>
         ) : (
           <>
             <div className="grid-cols-4 border-b border-b-slate-400 py-5 font-bold hidden md:grid">
@@ -66,7 +73,11 @@ export const CheckoutDetails = ({}): JSX.Element => {
           <div className="mb-4">
             <div>Total: {cart.cartTotalAmount} kr</div>
           </div>
-          <Button variant="contained" color="success">
+          <Button
+            disabled={!cart.cartItems.length}
+            variant="contained"
+            color="success"
+          >
             Pay now
           </Button>
         </div>
