@@ -27,7 +27,7 @@ export const ProductDetail = ({ product }: ProductDetailProps): JSX.Element => {
 
   if (!product) {
     return (
-      <div className="absolute top-1/2 left-1/2 text-lg flex flex-col text-center">
+      <div className="absolute top-1/2 left-1/2 text-lg flex flex-col text-center -translate-x-1/2 -translate-y-1/2">
         Product not found
         <Link className="text-blue-600" to="/">
           Back to Products list

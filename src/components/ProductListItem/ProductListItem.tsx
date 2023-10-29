@@ -16,7 +16,10 @@ export const ProductListItem = ({
           !product.available ? "opacity-60" : ""
         }`}
       >
-        <div className="font-bold">{product.name}</div>
+        <div className="font-bold">
+          {product.name} -{" "}
+          <span className="text-gray-500">{product.brand}</span>
+        </div>
         <div>{product.price} kr</div>
         {!product.available ? (
           <div className="text-red-500">Currently unavailable</div>
